@@ -1,5 +1,13 @@
-# React + Vite
+# Oeliks frontend (React + Vite)
 
+### setting up dev environment
+- clone the repository
+- `npm install` to install dependencies
+
+### running the project
+- `npm run dev`
+
+### note by React - Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
