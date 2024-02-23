@@ -1,9 +1,10 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
-import Sidebar from "./components/Sidebar";
-import Navbar from "./components/Navbar";
-import "./styles/App.css";
+import "../styles/App.css";
+import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
+import { Outlet } from "react-router-dom";
 
-function App() {
+const Layout = () => {
   return (
     <Grid
       templateAreas={{ base: `"nav" "main"`, lg: `"aside nav" "aside main"` }}
@@ -12,7 +13,7 @@ function App() {
         lg: "250px 1fr",
       }}
     >
-      <GridItem area="nav" boxShadow="xl" margin={5} borderRadius={15}>
+      <GridItem area="nav" boxShadow="md" margin={5} borderRadius={15}>
         <Navbar />
       </GridItem>
       <Show above="lg">
@@ -28,10 +29,10 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main" margin={7}>
-        {children}
+        <Outlet />
       </GridItem>
     </Grid>
   );
-}
+};
 
-export default App
+export default Layout;
