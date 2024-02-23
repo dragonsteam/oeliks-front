@@ -30,7 +30,7 @@ const CFaLock = chakra(FaLock);
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const { post, isLoading, errorMsg } = useRequest("/token/");
+  const { post, isLoading, errorMsg } = useRequest("/register/");
   const {
     register,
     handleSubmit,
@@ -41,15 +41,8 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     post(data, (data) => {
-      window.localStorage.setItem(
-        "auth",
-        JSON.stringify({
-          user_id: JWTDecoder(data.access).user_id,
-          accessToken: data?.access,
-          refreshToken: data?.refresh,
-        })
-      );
-      navigate("/");
+        console.log("created**");
+        navigate("/login");
     });
   };
 
@@ -67,8 +60,7 @@ const Login = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="blue.500" />
-        <Heading color="blue.400">Welcome</Heading>
+        <Heading color="blue.400">Register</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4} p="1rem" boxShadow="lg">
@@ -111,9 +103,6 @@ const Login = () => {
                 {errors.password?.type === "required" && (
                   <Msg level="error">The password field is required</Msg>
                 )}
-                <FormHelperText textAlign="right">
-                  <Link>forgot password?</Link>
-                </FormHelperText>
               </FormControl>
               {errorMsg && (
                 <Text fontSize={15} color="tomato">
@@ -124,7 +113,7 @@ const Login = () => {
                 <SpinnerButton />
               ) : (
                 <Button disabled={!isValid} type="submit" colorScheme="blue">
-                  Log in
+                  Submit
                 </Button>
               )}
             </Stack>
@@ -132,9 +121,9 @@ const Login = () => {
         </Box>
       </Stack>
       <Box>
-        New to us?{" "}
-        <Link color="blue.500" onClick={()=>{navigate('/signup')}}>
-          Sign Up
+        Already have one?{" "}
+        <Link color="blue.500" onClick={()=>{navigate('/login')}}>
+          Log In
         </Link>
       </Box>
     </Flex>

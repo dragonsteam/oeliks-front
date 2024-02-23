@@ -3,11 +3,13 @@ import Layout from "../components/Layout";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
+import Signup from "../components/Signup"
 import PageNotFound from "../components/PageNotFound";
 
 const router = createHashRouter([
   { path: "/login", element: <Login /> },
   { path: "/logout", element: <Logout /> },
+  { path: "/signup", element: <Signup /> },
   {
     path: "/",
     element: <Layout />,
