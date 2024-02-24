@@ -4,7 +4,7 @@ import ColorModeSwitch from "./common/ColorModeSwitch";
 const Navbar = () => {
   return (
     <HStack justifyContent="space-between" padding={5}>
-      <Text>Nav</Text>
+      <Text fontWeight={600}>OELIKS</Text>
       <ColorModeSwitch />
     </HStack>
   );

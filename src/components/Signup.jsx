@@ -13,14 +13,11 @@ import {
   Button,
   Box,
   Link,
-  Avatar,
   FormControl,
-  FormHelperText,
   InputRightElement,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import useRequest from "../hooks/useRequest";
-import { JWTDecoder } from "../util";
 import Msg from "./common/Msg";
 import SpinnerButton from "./common/SpinnerButton";
 

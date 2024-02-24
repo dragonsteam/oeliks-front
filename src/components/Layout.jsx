@@ -6,32 +6,14 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <Grid
-      templateAreas={{ base: `"nav" "main"`, lg: `"nav" "main"` }}
-      templateColumns={{
-        base: "1fr",
-        lg: "1fr",
-      }}
-    >
-      <GridItem area="nav" boxShadow="md" margin={5} borderRadius={15}>
+    <>
+      <GridItem boxShadow="md" margin={5} borderRadius={15}>
         <Navbar />
       </GridItem>
-      {/* <Show above="lg">
-        <GridItem
-          area="aside"
-          pos="fixed"
-          width="250px"
-          height="100vh"
-          paddingX={5}
-          boxShadow="xl"
-        >
-          <Sidebar />
-        </GridItem>
-      </Show> */}
-      <GridItem area="main" margin={7}>
+      <GridItem margin="auto" mt={50} width={{ base: "92%", lg: "60%" }}>
         <Outlet />
       </GridItem>
-    </Grid>
+    </>
   );
 };
 
