@@ -36,7 +36,7 @@ jobs:
       - name: build and copy to server
         run: |
           docker compose -f docker-compose.yml pull 
-          docker compose -f docker-compose.prod.yml up
+          docker compose -f docker-compose.yml up
           pwd
           cd ${{env.OELIKS_WORKDIR}}
           pwd
