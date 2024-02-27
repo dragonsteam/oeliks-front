@@ -10,6 +10,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: dragonsteam/oeliks-front:latest
   OELIKS_WORKDIR: ~/oeliks-server
+  SERVER_PUBLIC_FOLDER: oeliks-server_public
 
 jobs:
   publish:
@@ -27,17 +28,14 @@ jobs:
           docker build . --file Dockerfile --tag ${{env.REGISTRY}}/${{env.IMAGE_NAME}}
           docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}
 
-  deploy:
-    needs: publish
-    name: build project and deploy to server
-    runs-on: self-hosted
+  # deploy:
+  #   needs: publish
+  #   name: build project and deploy to server
+  #   runs-on: self-hosted
 
-    steps:
-      - name: build and copy to server
-        run: |
-          docker compose -f docker-compose.yml pull 
-          docker compose -f docker-compose.yml up
-          pwd
-          ls
-          cd ${{env.OELIKS_WORKDIR}}
-          pwd
+  #   steps:
+  #     - name: build and copy to server
+  #       run: |
+  #         docker compose -f docker-compose.yml pull
+  #         docker compose -f docker-compose.yml up
+  #         cd ${{env.OELIKS_WORKDIR}}

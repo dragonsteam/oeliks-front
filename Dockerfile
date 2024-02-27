@@ -1,5 +1,5 @@
 # Step 1: build stage
-FROM node:18-alpine
+FROM node:18-alpine as build-stage
 
 WORKDIR /app
 
@@ -9,14 +9,17 @@ RUN npm install
 
 COPY . .
 
-CMD npm run build
+RUN npm run build
+
 
 # CMD echo finished
 # ENTRYPOINT [ "echo", "finished" ]
 
 # Step 2: production stage
-# FROM nginx:1.25-alpine
+FROM nginx:1.25-alpine
 
-# COPY --from=build-stage /app/dist /usr/share/nginx/html
-# EXPOSE 80
-# ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

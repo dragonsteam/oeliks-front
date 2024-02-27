@@ -10,7 +10,8 @@ services:
     command: npm run build
     # environment:
     # - DJANGO_SETTINGS_MODULE=core.settings.dev
+
     # volumes:
-    #   - .:/app
+    #   - dist:/app/dist
 # volumes:
-#   mysqldata:
+#   dist:
