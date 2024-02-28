@@ -19,6 +19,7 @@ export const SearchBar = () => {
         <InputRightAddon p={0} border="none">
           <Button
             size="lg"
+            colorScheme="blue"
             borderLeftRadius={0}
             borderRightRadius={3.3}
             border="1px solid #949494"

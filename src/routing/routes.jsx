@@ -1,9 +1,10 @@
 import { createHashRouter } from "react-router-dom";
 import Layout from "../components/Layout";
 import Home from "../components/Home/Home";
+import NewPost from "../components/NewPost/NewPost";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
-import Signup from "../components/Signup"
+import Signup from "../components/Signup";
 import PageNotFound from "../components/PageNotFound";
 
 const router = createHashRouter([
@@ -15,11 +16,12 @@ const router = createHashRouter([
     element: <Layout />,
     children: [
       { path: "", element: <Home /> },
-  //     // { path: "map", element: <Map /> },
-  //     // { path: "logs", element: <DriverLogs /> },
-  //     // { path: "logs/driver/:id", element: <DriverLog /> },
-  //     // { path: "drivers", element: <Drivers /> },
-  //     // { path: "trucks", element: <Trucks /> },
+      { path: "new-post", element: <NewPost /> },
+      //     // { path: "map", element: <Map /> },
+      //     // { path: "logs", element: <DriverLogs /> },
+      //     // { path: "logs/driver/:id", element: <DriverLog /> },
+      //     // { path: "drivers", element: <Drivers /> },
+      //     // { path: "trucks", element: <Trucks /> },
     ],
   },
   { path: "*", element: <PageNotFound /> },
