@@ -16,8 +16,8 @@ import {
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-// import useRequest from "../../hooks/useRequest";
-// import { getHeaders } from "../../hooks/useData";
+import useRequest from "../../hooks/useRequest";
+import { getHeaders } from "../../hooks/useData";
 import { getErrorMsg } from "../../util";
 import SpinnerButton from "../common/SpinnerButton";
 import FormInput from "../common/FormInput";
@@ -26,20 +26,20 @@ export const schema = z.object({
   // truck: z.number({ invalid_type_error: "Truck is required" }).positive(),
   title: z.string().min(16).max(70),
   about: z.string(),
-  exchange_method: z.string(),
+  // exchange_method: z.string(),
   price: z.string(),
-  currency: z.string(),
-  is_auto_renew: z.boolean(),
+  // currency: z.string(),
+  // is_auto_renew: z.boolean(),
 });
 
 const NewPost = () => {
-  // const { post, isLoading, errorMsg, resErrors } = useRequest("/trucks/", true, {
-  //   headers: getHeaders(),
-  // });
-  const resErrors = [],
-    isLoading = false,
-    post = () => {},
-    errorMsg = "fuck you";
+  const { post, isLoading, errorMsg, resErrors } = useRequest("/advertisements/", true, {
+    headers: getHeaders(),
+  });
+  // const resErrors = [],
+  //   isLoading = false,
+  //   post = () => {},
+  //   errorMsg = "fuck you";
 
   const {
     register,

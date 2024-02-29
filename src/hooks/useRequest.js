@@ -6,7 +6,7 @@ import apiClient from "../services/api-client";
 const useRequest = (endpoint, redirectOn401 = false, requestConfig) => {
   const [resData, setResData] = useState();
   const [errorMsg, setErrorMsg] = useState("");
-  const [resErros, setResErrors] = useState({})
+  const [resErrors, setResErrors] = useState({})
   const [isLoading, setLoading] = useState(false);
   //
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ const useRequest = (endpoint, redirectOn401 = false, requestConfig) => {
       });
   }
 
-  return { post, put, resData, errorMsg, resErros, isLoading };
+  return { post, put, resData, errorMsg, resErrors, isLoading };
 };
 
 export default useRequest;
