@@ -8,6 +8,7 @@ const Home = () => {
       <SearchBar />
       <Sections />
       <VipAds />
+      test change
     </>
   );
 };
