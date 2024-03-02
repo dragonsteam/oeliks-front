@@ -1,19 +1,6 @@
-import {
-  Text,
-  Box,
-  Button,
-  HStack,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Stack,
-  Heading,
-} from "@chakra-ui/react";
+import { Text, Box, Button, HStack, Stack, Heading } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useRequest from "../../hooks/useRequest";
@@ -33,13 +20,14 @@ export const schema = z.object({
 });
 
 const NewPost = () => {
-  const { post, isLoading, errorMsg, resErrors } = useRequest("/advertisements/", true, {
-    headers: getHeaders(),
-  });
-  // const resErrors = [],
-  //   isLoading = false,
-  //   post = () => {},
-  //   errorMsg = "fuck you";
+  const [t, i18n] = useTranslation("global");
+  const { post, isLoading, errorMsg, resErrors } = useRequest(
+    "/advertisements/",
+    true,
+    {
+      headers: getHeaders(),
+    }
+  );
 
   const {
     register,
@@ -60,29 +48,31 @@ const NewPost = () => {
   return (
     <>
       <Box maxW="69rem">
-        <Heading size="lg">Create a new Advertisement</Heading>
+        <Heading size="lg" mb={5}>
+          {t("newpost.header")}
+        </Heading>
         <form id="new-post-form" onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={4}>
             <FormInput
-              label="Sarlavha kiriting*"
+              label={t("newpost.form.title")}
               type="text"
-              placeholder="Masalan, Iphone 11 kafolati bilan"
+              placeholder={t("newpost.form.title_ph")}
               id="title"
               conf={register("title")}
               errMsg={errors.title?.message}
               resErrMsg={getErrorMsg(resErrors, "title")}
             />
             <FormInput
-              label="Tavsif*"
+              label={t("newpost.form.about")}
               type="text"
-              placeholder="O’zingizni shu e'lonni ko’rayotgan odam o’rniga qo’ying va tavsif yozing"
+              placeholder={t("newpost.form.about_ph")}
               id="about"
               conf={register("about")}
               errMsg={errors.about?.message}
               resErrMsg={getErrorMsg(resErrors, "about")}
             />
             <FormInput
-              label="Narx*"
+              label={t("newpost.form.price")}
               type="number"
               id="price"
               conf={register("price")}
@@ -97,7 +87,7 @@ const NewPost = () => {
           )}
         </form>
         <Button variant="outline" mr={3}>
-          Cancel
+          {t("common.cancel")}
         </Button>
         {isLoading ? (
           <SpinnerButton />
@@ -108,7 +98,7 @@ const NewPost = () => {
             form="new-post-form"
             colorScheme="blue"
           >
-            Save
+            {t("common.save")}
           </Button>
         )}
       </Box>

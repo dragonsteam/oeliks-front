@@ -14,9 +14,10 @@ const LanguageSwitch = () => {
         handleChangeLang(e.target.value);
       }}
     >
-      <option value="en">EN</option>
-      <option value="uz">UZ</option>
-      <option value="ru">RU</option>
+      <option value="en">En</option>
+      <option value="uz">O'z</option>
+      <option value="uz_cr">Уз</option>
+      <option value="ru">Ру</option>
     </Select>
   );
 };

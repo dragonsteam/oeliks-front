@@ -1,10 +1,29 @@
 {
+  "common": {
+    "save": "Save",
+    "submit": "Submit",
+    "update": "Update",
+    "cancel": "Cancel"
+  },
+  "navbar": {
+    "profile": "Profile"
+  },
   "home": {
     "sections": {
       "header": "All sections"
     },
     "vipads": {
       "header": "VIP Advertisements"
+    }
+  },
+  "newpost": {
+    "header": "Create a new Advertisement",
+    "form": {
+      "title": "Title*",
+      "title_ph": "for example: new iPhone with insurance",
+      "about": "About*",
+      "about_ph": "type whole thing about procut or service to make people understand easily",
+      "price": "Price*"
     }
   }
 }
