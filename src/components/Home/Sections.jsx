@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Grid, GridItem, Box, Text, Heading } from "@chakra-ui/react";
 
 const sections_data = [
@@ -44,15 +45,21 @@ const sections_data = [
 ];
 
 const Sections = () => {
+  const [t, i18n] = useTranslation("global");
   return (
     <Box mt={10}>
       <Heading align="center" fontSize={30}>
-        All Sections
+        {t("home.sections.header")}
       </Heading>
       <Grid templateColumns="repeat(8, 1fr)" gap={6} mt={5}>
-        {sections_data.map((section) => {
+        {sections_data.map((section, index) => {
           return (
-            <GridItem w="100%" display="flex" justifyContent="center">
+            <GridItem
+              key={index}
+              w="100%"
+              display="flex"
+              justifyContent="center"
+            >
               <Box>
                 <Box w="20" h="20" bg="blue.500" rounded={50}></Box>
                 <Text align="center" mt={3}>

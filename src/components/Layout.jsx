@@ -2,7 +2,7 @@ import { Grid, GridItem, Show } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import "../styles/App.css";
 import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 
 const Layout = () => {

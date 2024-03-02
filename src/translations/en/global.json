@@ -1,5 +1,10 @@
 {
-  "header": {
-    "message": "hello mother-fathers!"
+  "home": {
+    "sections": {
+      "header": "All sections"
+    },
+    "vipads": {
+      "header": "VIP Advertisements"
+    }
   }
 }

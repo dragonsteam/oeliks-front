@@ -8,6 +8,7 @@ import theme from "./theme.js";
 import router from "./routing/routes.jsx";
 import global_en from "./translations/en/global.json";
 import global_uz from "./translations/uz/global.json";
+import global_ru from "./translations/ru/global.json";
 import i18next from "i18next";
 import { I18nextProvider } from "react-i18next";
 
@@ -20,6 +21,9 @@ i18next.init({
     },
     uz: {
       global: global_uz,
+    },
+    ru: {
+      global: global_ru,
     },
   },
 });

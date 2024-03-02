@@ -1,5 +1,10 @@
 {
-  "header": {
-    "message": "kotta holangniki!"
+  "home": {
+    "sections": {
+      "header": "Barcha bo'limlar"
+    },
+    "vipads": {
+      "header": "VIP Reklamalar"
+    }
   }
 }
