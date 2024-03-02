@@ -19,6 +19,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import TelegramLoginButton from "telegram-login-button";
 import useRequest from "../hooks/useRequest";
 import { JWTDecoder } from "../util";
 import Msg from "./common/Msg";
@@ -38,6 +39,10 @@ const Login = () => {
   } = useForm();
 
   const handleShowClick = () => setShowPassword(!showPassword);
+
+  const handleTelegramResponse = (response) => {
+    console.log(response);
+  };
 
   const onSubmit = async (data) => {
     post(data, (data) => {
@@ -72,6 +77,12 @@ const Login = () => {
         <Box minW={{ base: "90%", md: "468px" }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4} p="1rem" boxShadow="lg">
+              <FormControl>
+                <TelegramLoginButton
+                  botName="oeliksbot"
+                  dataOnauth={(user) => console.log(user)}
+                />
+              </FormControl>
               <FormControl>
                 <InputGroup>
                   <InputLeftElement
@@ -133,7 +144,12 @@ const Login = () => {
       </Stack>
       <Box>
         New to us?{" "}
-        <Link color="blue.500" onClick={()=>{navigate('/signup')}}>
+        <Link
+          color="blue.500"
+          onClick={() => {
+            navigate("/signup");
+          }}
+        >
           Sign Up
         </Link>
       </Box>
