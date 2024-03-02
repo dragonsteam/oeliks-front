@@ -1,8 +1,9 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Outlet } from "react-router-dom";
 import "../styles/App.css";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
-import { Outlet } from "react-router-dom";
+import Footer from "./Footer/Footer";
 
 const Layout = () => {
   return (
@@ -12,6 +13,9 @@ const Layout = () => {
       </GridItem>
       <GridItem margin="auto" mt={50} width={{ base: "92%", lg: "60%" }}>
         <Outlet />
+      </GridItem>
+      <GridItem margin="auto" mt={50} width="100%">
+        <Footer />
       </GridItem>
     </>
   );

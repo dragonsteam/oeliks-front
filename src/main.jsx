@@ -6,7 +6,23 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme.js";
 import router from "./routing/routes.jsx";
+import global_en from "./translations/en/global.json";
+import global_uz from "./translations/uz/global.json";
+import i18next from "i18next";
+import { I18nextProvider } from "react-i18next";
 
+i18next.init({
+  interpolation: { escapeValue: false },
+  lng: "en",
+  resources: {
+    en: {
+      global: global_en,
+    },
+    uz: {
+      global: global_uz,
+    },
+  },
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,14 +38,16 @@ const queryClient = new QueryClient({
   },
 });
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools />
-      </QueryClientProvider>
+      <I18nextProvider i18n={i18next}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </I18nextProvider>
     </ChakraProvider>
   </React.StrictMode>
-)
+);
