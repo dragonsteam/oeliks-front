@@ -5,6 +5,7 @@ import {
   Text,
   Flex,
   Heading,
+  Divider,
   Input,
   InputGroup,
   Stack,
@@ -40,8 +41,8 @@ const Login = () => {
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
-  const handleTelegramResponse = (response) => {
-    console.log(response);
+  const handleTelegramResponse = (user) => {
+    console.log(user);
   };
 
   const onSubmit = async (data) => {
@@ -77,12 +78,13 @@ const Login = () => {
         <Box minW={{ base: "90%", md: "468px" }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4} p="1rem" boxShadow="lg">
-              <FormControl>
+              <FormControl alignContent="center">
                 <TelegramLoginButton
                   botName="oeliksbot"
-                  dataOnauth={(user) => console.log(user)}
+                  dataOnauth={(user) => handleTelegramResponse(user)}
                 />
               </FormControl>
+              <Divider />
               <FormControl>
                 <InputGroup>
                   <InputLeftElement
