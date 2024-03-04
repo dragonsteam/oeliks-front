@@ -2,7 +2,7 @@ import { createHashRouter } from "react-router-dom";
 import Layout from "../components/Layout";
 import Home from "../components/Home/Home";
 import NewPost from "../components/NewPost/NewPost";
-import Login from "../components/Login";
+import Login from "../components/Login/Login";
 import Logout from "../components/Logout";
 import Signup from "../components/Signup";
 import PageNotFound from "../components/PageNotFound";

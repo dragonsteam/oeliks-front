@@ -4,14 +4,14 @@ import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import i18next from "i18next";
+import { I18nextProvider } from "react-i18next";
 import theme from "./theme.js";
 import router from "./routing/routes.jsx";
 import global_en from "./translations/en/global.json";
 import global_uz from "./translations/uz/global.json";
 import global_uz_cr from "./translations/uz_cr/global.json";
 import global_ru from "./translations/ru/global.json";
-import i18next from "i18next";
-import { I18nextProvider } from "react-i18next";
 
 i18next.init({
   interpolation: { escapeValue: false },

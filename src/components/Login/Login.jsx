@@ -20,11 +20,11 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
-import TelegramLoginButton from "telegram-login-button";
-import useRequest from "../hooks/useRequest";
-import { JWTDecoder } from "../util";
-import Msg from "./common/Msg";
-import SpinnerButton from "./common/SpinnerButton";
+import useRequest from "../../hooks/useRequest";
+import { JWTDecoder } from "../../util";
+import Msg from "../common/Msg";
+import SpinnerButton from "../common/SpinnerButton";
+import TelegramLogin from "./ TelegramLogin";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -41,11 +41,7 @@ const Login = () => {
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
-  const handleTelegramResponse = (user) => {
-    console.log(user);
-  };
-
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     post(data, (data) => {
       window.localStorage.setItem(
         "auth",
@@ -78,12 +74,7 @@ const Login = () => {
         <Box minW={{ base: "90%", md: "468px" }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4} p="1rem" boxShadow="lg">
-              <FormControl alignContent="center">
-                <TelegramLoginButton
-                  botName="oeliksbot"
-                  dataOnauth={(user) => handleTelegramResponse(user)}
-                />
-              </FormControl>
+              <TelegramLogin />
               <Divider />
               <FormControl>
                 <InputGroup>
