@@ -1,22 +1,23 @@
 import { CanceledError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
+
 import apiClient from "../services/api-client";
 
-const useRequest = (endpoint, redirectOn401 = false, appendAuth = false) => {
+const useRequest = ({ url, redirectOn401 = false, appendAuth = false }) => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const [resData, setResData] = useState();
   const [errorMsg, setErrorMsg] = useState("");
   const [resErrors, setResErrors] = useState({});
   const [isLoading, setLoading] = useState(false);
-  const queryClient = useQueryClient();
   //
-  const navigate = useNavigate();
 
   const getAuth = () => {
-    if (!appendAuth) return {};
     const auth = queryClient.getQueryData("auth");
-    console.log("fuckers", auth);
+    if (!appendAuth || !auth) return {};
     return {
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +32,7 @@ const useRequest = (endpoint, redirectOn401 = false, appendAuth = false) => {
     setErrorMsg("");
     setResErrors({});
     apiClient
-      .post(endpoint, data, { ...getAuth() })
+      .post(url, data, { ...getAuth() })
       .then((res) => {
         setResData(res.data);
         setLoading(false);
@@ -58,7 +59,7 @@ const useRequest = (endpoint, redirectOn401 = false, appendAuth = false) => {
     setErrorMsg("");
     setResErrors({});
     apiClient
-      .put(endpoint, data, { ...requestConfig })
+      .put(url, data, { ...requestConfig })
       .then((res) => {
         setResData(res.data);
         setLoading(false);

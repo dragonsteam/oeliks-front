@@ -1,10 +1,9 @@
-import { FormControl, Select } from "@chakra-ui/react";
-import { UseFormRegisterReturn } from "react-hook-form";
-import { ReactNode } from "react";
+import { FormControl, Select, Text } from "@chakra-ui/react";
 import Msg from "./Msg";
 
 const FormSelect = ({
   id,
+  label,
   placeholder,
   conf,
   children,
@@ -13,6 +12,7 @@ const FormSelect = ({
 }) => {
   return (
     <FormControl>
+      <Text>{label}</Text>
       <Select placeholder={placeholder} id={id} {...conf}>
         {children}
       </Select>

@@ -18,7 +18,7 @@ const fake_data = {
 const TelegramLogin = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { post, isLoading, errorMsg } = useRequest("/token/telegram/");
+  const { post, isLoading, errorMsg } = useRequest({ url: "/token/telegram/" });
 
   const handleTelegramRequest = (user) => {
     console.log("telegram user", user);

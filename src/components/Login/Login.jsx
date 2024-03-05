@@ -32,7 +32,7 @@ const CFaLock = chakra(FaLock);
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const { post, isLoading, errorMsg } = useRequest("/token/");
+  const { post, isLoading, errorMsg } = useRequest({ url: "/token" });
   const {
     register,
     handleSubmit,

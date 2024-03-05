@@ -1,35 +1,53 @@
-import { QueryKey, useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { AxiosError } from "axios";
 import { useEffect } from "react";
 import { getHeaders } from "./useData";
 import apiClient from "../services/api-client";
 
-const useEntities = ({keys, url, staleTime, logoutOn404 = false}) => {
-    const navigate = useNavigate();
+const useEntities = ({
+  keys,
+  url,
+  staleTime,
+  redirectOn401 = false,
+  appendAuth = false,
+}) => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-    const fetchEntities = () =>
-        apiClient.get(url, {headers: getHeaders()}).then((res) => { console.log("data**", res.data.data); return res.data.data});
+  const getAuth = () => {
+    const auth = queryClient.getQueryData("auth");
+    if (!appendAuth || !auth) return {};
+    return {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "JWT " + auth.access,
+      },
+    };
+  };
 
-    const query = useQuery({
-        // queryKey: ["drivers"],
-        queryKey: keys,
-        queryFn: fetchEntities,
-        staleTime: staleTime,
+  const fetchEntities = () =>
+    apiClient.get(url, { ...getAuth() }).then((res) => {
+      console.log("data**", res.data.data);
+      return res.data.data;
     });
 
-    useEffect(() => {
-        if (logoutOn404 && query.error?.response?.status === 401) {
-            // this shit it causing to force user to login twice
-            navigate("/login");
-            // so i fixed it by changing status code, it doesnt execute here again
-            query.error.response.status = 0;
-        }
-    }, [query.error]);
+  const query = useQuery({
+    // queryKey: ["drivers"],
+    queryKey: keys,
+    queryFn: fetchEntities,
+    staleTime: staleTime,
+  });
 
-    
+  useEffect(() => {
+    if (redirectOn401 && query.error?.response?.status === 401) {
+      // this shit it causing to force user to login twice
+      navigate("/login");
+      // so i fixed it by changing status code, it doesnt execute here again
+      query.error.response.status = 0;
+    }
+  }, [query.error]);
 
-    return query;
-}
+  return query;
+};
 
 export default useEntities;
