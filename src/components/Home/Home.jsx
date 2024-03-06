@@ -13,10 +13,10 @@ const Home = () => {
     refetch,
   } = useEntities({
     keys: ["vip-ads"],
-    url: "/advertisements",
+    url: "/advertisements/vip",
     staleTime: 3 * 60 * 1000,
     redirectOn401: true,
-    appendAuth: true,
+    // appendAuth: true, // this is for everyone
   });
 
   return (

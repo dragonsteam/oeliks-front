@@ -1,6 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Text, Box, Button, HStack, Stack, Heading } from "@chakra-ui/react";
+import {
+  Text,
+  Box,
+  Button,
+  Stack,
+  Heading,
+  Grid,
+  GridItem,
+} from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
@@ -12,6 +20,7 @@ import { getErrorMsg } from "../../util";
 import SpinnerButton from "../common/SpinnerButton";
 import FormInput from "../common/FormInput";
 import FormSelect from "../common/FormSelect";
+import Pictures from "./Pictures";
 
 export const schema = z.object({
   // truck: z.number({ invalid_type_error: "Truck is required" }).positive(),
@@ -74,6 +83,7 @@ const NewPost = () => {
             errMsg={errors.title?.message}
             resErrMsg={getErrorMsg(resErrors, "title")}
           />
+          <Pictures />
           <FormInput
             label={t("newpost.form.about")}
             type="text"
@@ -98,8 +108,8 @@ const NewPost = () => {
             errMsg={errors.currency?.message}
             resErrMsg={getErrorMsg(resErrors, "currency")}
           >
-            <option value="USD">Uzbek Sums</option>
-            <option value="UZS">US Dollars</option>
+            <option value="UZS">Uzbek Sums</option>
+            <option value="USD">US Dollars</option>
             <option value="RUB">Russian Rubles</option>
           </FormSelect>
         </Stack>
