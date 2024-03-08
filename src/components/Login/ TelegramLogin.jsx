@@ -22,10 +22,13 @@ const TelegramLogin = () => {
 
   const handleTelegramRequest = (user) => {
     console.log("telegram user", user);
-    post(user, (data) => {
-      console.log("auth data", data);
-      queryClient.setQueryData("auth", data);
-      navigate("/");
+    post({
+      data: user,
+      callback: (data) => {
+        console.log("auth data", data);
+        queryClient.setQueryData("auth", data);
+        navigate("/");
+      },
     });
   };
 

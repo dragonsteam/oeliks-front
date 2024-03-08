@@ -1,4 +1,4 @@
-import { Grid, GridItem, Box, Text, Heading } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Text, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 const VipAds = ({ data }) => {
@@ -25,7 +25,10 @@ const VipAds = ({ data }) => {
                   borderTopRadius={10}
                   borderBottom="1px solid grey"
                 >
-                  image
+                  <Image
+                    src="http://localhost:8000/media/ad/images/snapedit_1709880642958_Bbpii1R.jpeg"
+                    alt="ad-pic"
+                  />
                 </Box>
                 <Box p={2}>
                   <Text>{ad.title}</Text>

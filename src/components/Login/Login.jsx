@@ -42,16 +42,19 @@ const Login = () => {
   const handleShowClick = () => setShowPassword(!showPassword);
 
   const onSubmit = (data) => {
-    post(data, (data) => {
-      window.localStorage.setItem(
-        "auth",
-        JSON.stringify({
-          user_id: JWTDecoder(data.access).user_id,
-          accessToken: data?.access,
-          refreshToken: data?.refresh,
-        })
-      );
-      navigate("/");
+    post({
+      data: data,
+      callback: (data) => {
+        window.localStorage.setItem(
+          "auth",
+          JSON.stringify({
+            user_id: JWTDecoder(data.access).user_id,
+            accessToken: data?.access,
+            refreshToken: data?.refresh,
+          })
+        );
+        navigate("/");
+      },
     });
   };
 

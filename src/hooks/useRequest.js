@@ -19,20 +19,23 @@ const useRequest = ({ url, redirectOn401 = false, appendAuth = false }) => {
     const auth = queryClient.getQueryData("auth");
     if (!appendAuth || !auth) return {};
     return {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "JWT " + auth.access,
-      },
+      "Content-Type": "application/json",
+      Authorization: "JWT " + auth.access,
     };
   };
 
-  const post = (data, callback = () => {}) => {
+  const post = ({
+    data,
+    callback = () => {},
+    errCallback = () => {},
+    uploadHandler = () => {},
+  }) => {
     // clean before fetching
     setLoading(true);
     setErrorMsg("");
     setResErrors({});
     apiClient
-      .post(url, data, { ...getAuth() })
+      .post(url, data, { headers: getAuth(), onUploadProgress: uploadHandler })
       .then((res) => {
         setResData(res.data);
         setLoading(false);
