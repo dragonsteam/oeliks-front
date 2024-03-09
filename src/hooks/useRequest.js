@@ -19,7 +19,7 @@ const useRequest = ({ url, redirectOn401 = false, appendAuth = false }) => {
     const auth = queryClient.getQueryData("auth");
     if (!appendAuth || !auth) return {};
     return {
-      "Content-Type": "application/json",
+      // "Content-Type": "application/json", // this is preventing from posting file
       Authorization: "JWT " + auth.access,
     };
   };

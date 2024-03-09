@@ -29,6 +29,12 @@ export const schema = z.object({
   // exchange_method: z.string(),
   price: z.string(),
   currency: z.string(),
+  // pictures: z.array(
+  //   z.object({
+  //     id: z.number(),
+  //     image: z.string(),
+  //   })
+  // ),
   // currency: z.string(),
   // is_auto_renew: z.boolean(),
 });
@@ -59,11 +65,28 @@ const NewPost = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data) => {
-    console.log("new post data*", data);
-    post(data, () => {
-      reset();
-      navigate("/");
+  const [pictures, setPictures] = useState([]);
+
+  const onNewPicture = (pic) => {
+    setPictures([...pictures, pic]);
+    // schema.shape.pictures.parse([[...pictures, pic]]);
+    // register("pictures").setPictures([...pictures, pic]);
+    // schema.parse({ ...schema.data, pictures: [pictures] });
+    // console.log("schema.data", schema.getQueryData());
+  };
+
+  const onSubmit = (data) => {
+    // combine data with pictures
+    const newPicData = pictures.map((pic) => pic.id);
+    const newData = { ...data, pictures: newPicData };
+
+    console.log("new post data*", newData);
+    post({
+      data: newData,
+      callback: () => {
+        reset();
+        navigate("/");
+      },
     });
   };
 
@@ -83,7 +106,7 @@ const NewPost = () => {
             errMsg={errors.title?.message}
             resErrMsg={getErrorMsg(resErrors, "title")}
           />
-          <Pictures />
+          <Pictures pictures={pictures} onNewPicture={onNewPicture} />
           <FormInput
             label={t("newpost.form.about")}
             type="text"
@@ -119,21 +142,20 @@ const NewPost = () => {
           </Text>
         )}
       </form>
-      <Button variant="outline" mr={3}>
-        {t("common.cancel")}
-      </Button>
-      {isLoading ? (
-        <SpinnerButton />
-      ) : (
-        <Button
-          disabled={!isValid}
-          type="submit"
-          form="new-post-form"
-          colorScheme="blue"
-        >
-          {t("common.save")}
-        </Button>
-      )}
+      <Box mt={7}>
+        {isLoading ? (
+          <SpinnerButton />
+        ) : (
+          <Button
+            disabled={!isValid}
+            type="submit"
+            form="new-post-form"
+            colorScheme="blue"
+          >
+            {t("common.submit")}
+          </Button>
+        )}
+      </Box>
     </Box>
   );
 };

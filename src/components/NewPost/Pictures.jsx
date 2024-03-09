@@ -1,41 +1,36 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Box, Progress, Grid, GridItem, Text, Image } from "@chakra-ui/react";
-import { MdCameraAlt, MdOutlineCameraAlt } from "react-icons/md";
+import { TbCameraPlus } from "react-icons/tb";
 import { baseUrl } from "../../services/api-client";
 import useRequest from "../../hooks/useRequest";
 
-const Pictures = () => {
+const Pictures = ({ pictures = [], onNewPicture }) => {
   const [t, i18n] = useTranslation("global");
   const { post, isLoading } = useRequest({
     url: "/advertisements/images/new",
-    // redirectOn401: true,
-    // appendAuth: true,
+    redirectOn401: true,
+    appendAuth: true,
   });
 
-  const [pictures, setPictures] = useState([]);
+  // const [pictures, setPictures] = useState([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInput = useRef(null);
 
   const handlePicChose = (e) => {
     const fd = new FormData();
-
-    console.log("***", e.target.files[0]);
-
     fd.append("image", e.target.files[0], e.target.files[0].name);
+    // reset file input
+    fileInput.current.value = null;
 
     post({
       data: fd,
       callback: (data) => {
         console.log(data);
-        setPictures([...pictures, data]);
-        console.log(pictures);
+        // inform NewPost component that pictures has changed
+        onNewPicture(data);
       },
       uploadHandler: (e) => {
-        console.log(
-          "upload progress: ",
-          Math.round((e.loaded / e.total) * 100) + " %"
-        );
         setUploadProgress(Math.round((e.loaded / e.total) * 100));
       },
     });
@@ -86,7 +81,7 @@ const Pictures = () => {
             fileInput.current.click();
           }}
         >
-          <MdCameraAlt size={40} />
+          <TbCameraPlus size={40} />
         </GridItem>
       </Grid>
       {isLoading && (

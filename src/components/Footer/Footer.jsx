@@ -5,7 +5,7 @@ const CFaTelegram = chakra(FaTelegram);
 
 const Footer = () => {
   return (
-    <Box boxShadow="outline">
+    <Box boxShadow="outline" mt={200}>
       <HStack px={{ sm: 5, lg: 40 }} py={5} spacing={40}>
         <Text fontWeight="bold">© 2024 Dragons Team - NickPhilomath</Text>
         <HStack fontSize={30} spacing={7}>
