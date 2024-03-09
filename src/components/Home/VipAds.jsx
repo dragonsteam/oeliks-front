@@ -1,6 +1,7 @@
 import { Grid, GridItem, Box, Text, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
+import no_image from "../../assets/no-image.png"
 import { baseUrl } from "../../services/api-client";
 
 const VipAds = ({ data }) => {
@@ -16,23 +17,28 @@ const VipAds = ({ data }) => {
             console.log(index, ad.pictures);
             const image =
               ad.pictures.length !== 0
-                ? ad.pictures[0].image
-                : baseUrl + "/assets/no-image.jpeg";
+                ? baseUrl + ad.pictures[0].image
+                : no_image;
             return (
               <GridItem
                 key={index}
                 w="100%"
-                borderRadius={10}
-                border="1px solid grey"
                 boxShadow="md"
+                borderBottomRadius={10}
               >
                 <Box
                   w="100"
-                  h={200}
-                  borderTopRadius={10}
+                  // h={180}
+                  // objectFit='contain'
                   borderBottom="1px solid grey"
-                >
-                  <Image src={baseUrl + image} alt="ad-pic" />
+                  >
+                  <Image
+                    w='100%'
+                    h={180}
+                    objectFit='cover'
+                    borderTopRadius={10}
+                    src={image} alt="ad-pic"
+                  />
                 </Box>
                 <Box p={2}>
                   <Text>{ad.title}</Text>
