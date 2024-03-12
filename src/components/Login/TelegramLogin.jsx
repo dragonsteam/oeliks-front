@@ -1,17 +1,17 @@
-import { HStack, Button } from "@chakra-ui/react";
+import { HStack, Button, Box, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import TelegramLoginButton from "telegram-login-button";
 import useRequest from "../../hooks/useRequest";
 
 const fake_data = {
-  auth_date: 1709487049,
-  first_name: "Nick",
-  hash: "faa98f1c8c6c25d0db9b27392cf24e1fa2f9822194024bd2d786a594765cefa9",
   id: 992519627,
+  first_name: "Nick",
   last_name: "Wild",
+  username: "NickPhilomath",
   photo_url:
     "https://t.me/i/userpic/320/Sn5-VT8K0XDt-4JjI5sLB_gv3u0Ew5R0ad04INgSfKo.jpg",
-  username: "NickPhilomath",
+  auth_date: 1710273247,
+  hash: "fb5d7282d4c99beb23d2bb1c4f9f987ed1b0290b7dedf2014f6922d2ef05d2ec",
 };
 
 const TelegramLogin = () => {
@@ -32,20 +32,27 @@ const TelegramLogin = () => {
   };
 
   return (
-    <HStack>
-      <TelegramLoginButton
-        botName="oeliksbot"
-        dataOnauth={(user) => handleTelegramRequest(user)}
-      />
-      <Button
-        // variant="outline"
-        onClick={() => {
-          handleTelegramRequest(fake_data);
-        }}
-      >
-        submit fake data
-      </Button>
-    </HStack>
+    <Box>
+      <HStack>
+        <TelegramLoginButton
+          botName="oeliksbot"
+          dataOnauth={(user) => handleTelegramRequest(user)}
+        />
+        <Button
+          // variant="outline"
+          onClick={() => {
+            handleTelegramRequest(fake_data);
+          }}
+        >
+          submit fake data
+        </Button>
+      </HStack>
+      {errorMsg && (
+        <Text fontSize={15} color="tomato" mt={5}>
+          {errorMsg}
+        </Text>
+      )}
+    </Box>
   );
 };
 

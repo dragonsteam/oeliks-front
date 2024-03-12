@@ -22,7 +22,6 @@ const VipAds = ({ data }) => {
       >
         {data &&
           data.map((ad, index) => {
-            console.log(index, ad.pictures);
             const image =
               ad.pictures.length !== 0
                 ? baseUrl + ad.pictures[0].image
