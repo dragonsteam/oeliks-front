@@ -49,20 +49,26 @@ const Sections = () => {
           md: "repeat(6, 1fr)",
           sm: "repeat(4, 1fr)",
         }}
-        gap={6}
+        gap={3}
         mt={5}
       >
         {sections_data.map((section, index) => {
           return (
-            <GridItem
-              key={index}
-              w="100%"
-              display="flex"
-              justifyContent="center"
-            >
-              <Box>
-                <Box w="20" h="20" bg="blue.500" rounded={50}></Box>
-                <Text align="center" mt={3}>
+            <GridItem key={index} display="flex" justifyContent="center">
+              <Box
+                w={120}
+                border="3px solid"
+                px={3}
+                py={1}
+                borderRadius={8}
+                cursor="pointer"
+              >
+                <Text
+                  fontSize={18}
+                  fontWeight="bold"
+                  align="center"
+                  userSelect="none"
+                >
                   {section.name}
                 </Text>
               </Box>
