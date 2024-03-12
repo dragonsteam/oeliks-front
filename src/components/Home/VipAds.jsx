@@ -8,9 +8,9 @@ const VipAds = ({ data }) => {
   const [t, i18n] = useTranslation("global");
   return (
     <Box mt={10}>
-      <Heading align="center" fontSize={30}>
+      {/* <Heading align="center" fontSize={30}>
         {t("home.vipads.header")}
-      </Heading>
+      </Heading> */}
       <Grid templateColumns="repeat(4, 1fr)" gap={2} mt={5}>
         {data &&
           data.map((ad, index) => {

@@ -1,6 +1,7 @@
-import { Button } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 import useEntities from "../../hooks/useEntities";
+import CoverLetter from "./CoverLetter";
 import { SearchBar } from "./SearchBar";
 import Sections from "./Sections";
 import VipAds from "./VipAds";
@@ -20,11 +21,12 @@ const Home = () => {
   });
 
   return (
-    <>
+    <Box>
+      <CoverLetter />
       <SearchBar />
       <Sections />
       <VipAds data={advertisements} />
-    </>
+    </Box>
   );
 };
 
