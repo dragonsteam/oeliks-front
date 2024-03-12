@@ -11,7 +11,15 @@ const VipAds = ({ data }) => {
       {/* <Heading align="center" fontSize={30}>
         {t("home.vipads.header")}
       </Heading> */}
-      <Grid templateColumns="repeat(4, 1fr)" gap={2} mt={5}>
+      <Grid
+        templateColumns={{
+          sm: "repeat(1, 1fr)",
+          md: "repeat(2, 1fr)",
+          lg: "repeat(4, 1fr)",
+        }}
+        gap={2}
+        mt={5}
+      >
         {data &&
           data.map((ad, index) => {
             console.log(index, ad.pictures);

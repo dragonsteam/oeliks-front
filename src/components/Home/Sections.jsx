@@ -34,14 +34,6 @@ const sections_data = [
     name: "business",
     image_url: null,
   },
-  {
-    name: "business",
-    image_url: null,
-  },
-  {
-    name: "business",
-    image_url: null,
-  },
 ];
 
 const Sections = () => {
@@ -51,7 +43,15 @@ const Sections = () => {
       <Heading align="center" fontSize={30}>
         {t("home.sections.header")}
       </Heading>
-      <Grid templateColumns="repeat(8, 1fr)" gap={6} mt={5}>
+      <Grid
+        templateColumns={{
+          lg: "repeat(8, 1fr)",
+          md: "repeat(6, 1fr)",
+          sm: "repeat(4, 1fr)",
+        }}
+        gap={6}
+        mt={5}
+      >
         {sections_data.map((section, index) => {
           return (
             <GridItem

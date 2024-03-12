@@ -5,13 +5,13 @@ const CoverLetter = () => {
     <Box>
       <Heading textAlign="center">Welcome</Heading>
       <Text fontSize={20} as="kbd">
-        Oeliks is a free advertising platform. you can advertise anything, more
-        people like it more you will have views, so good luck on discovering and
-        advertising!
+        Oeliks is a free advertising platform being developed by Dragons Team.
+        you can advertise anything, more people like it more you will have
+        views, so good luck on discovering and advertising!
       </Text>
       <br />
       <Text color="yellow.500" as="kbd" fontWeight="bold">
-        Warning: The website is currently on developement stage and it is using
+        Warning: The website is currently on development stage and it is using
         http insecure protocol. DO NOT SUBMIT PERSONAL INFORMATION as they
         likely might be stolen by hackers
       </Text>
