@@ -24,7 +24,7 @@ import useRequest from "../../hooks/useRequest";
 import { JWTDecoder } from "../../util";
 import Msg from "../common/Msg";
 import SpinnerButton from "../common/SpinnerButton";
-import TelegramLogin from "./ TelegramLogin";
+import TelegramLogin from "./TelegramLogin";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
