@@ -1,6 +1,7 @@
 import { createHashRouter } from "react-router-dom";
 import Layout from "../components/Layout";
 import Home from "../components/Home/Home";
+import Profile from "../components/Profile/Profile";
 import NewPost from "../components/NewPost/NewPost";
 import Login from "../components/Login/Login";
 import Logout from "../components/Logout";
@@ -16,6 +17,7 @@ const router = createHashRouter([
     element: <Layout />,
     children: [
       { path: "", element: <Home /> },
+      { path: "profile", element: <Profile /> },
       { path: "new-post", element: <NewPost /> },
       //     // { path: "map", element: <Map /> },
       //     // { path: "logs", element: <DriverLogs /> },

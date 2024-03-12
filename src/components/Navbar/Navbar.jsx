@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Box, HStack, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { LuUser } from "react-icons/lu";
 import Logo from "./Logo";
@@ -22,7 +22,7 @@ const Navbar = () => {
           borderRadius={5}
           cursor="pointer"
           onClick={() => {
-            navigate("/new-post");
+            navigate("/profile");
           }}
         >
           <LuUser size="22px" />
@@ -30,6 +30,14 @@ const Navbar = () => {
             {t("navbar.profile")}
           </Text>
         </HStack>
+        <Button
+          colorScheme="blue"
+          onClick={() => {
+            navigate("/new-post");
+          }}
+        >
+          {t("navbar.new_post")}
+        </Button>
         <ColorModeSwitch />
       </HStack>
     </HStack>

@@ -8,6 +8,7 @@ const LanguageSwitch = () => {
   };
   return (
     <Select
+      width={20}
       size="sm"
       defaultValue="en"
       onChange={(e) => {

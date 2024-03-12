@@ -6,14 +6,15 @@
     "cancel": "Cancel"
   },
   "navbar": {
-    "profile": "Profile"
+    "profile": "Profile",
+    "new_post": "New Post"
   },
   "home": {
     "sections": {
       "header": "All sections"
     },
     "vipads": {
-      "header": "VIP Advertisements"
+      "header": "Random Advertisements"
     }
   },
   "newpost": {

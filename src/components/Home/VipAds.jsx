@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 
 import no_image from "../../assets/no-image.png";
 import { baseUrl } from "../../services/api-client";
-import { limitText } from "../../util";
 
 const VipAds = ({ data }) => {
   const [t, i18n] = useTranslation("global");
@@ -43,7 +42,9 @@ const VipAds = ({ data }) => {
                   />
                 </Box>
                 <Box p={2}>
-                  <Text>{limitText(ad.title, 25)}</Text>
+                  <Text noOfLines={[1, 2]} maxWidth={250}>
+                    {ad.title}
+                  </Text>
                   <Text fontWeight="bold">
                     {ad.price} {ad.currency}
                   </Text>
