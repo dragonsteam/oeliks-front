@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -41,11 +40,10 @@ export const schema = z.object({
 
 const NewPost = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   useEffect(() => {
     // first of all check if user is actually authorized
-    const auth = queryClient.getQueryData("auth");
+    const auth = localStorage.getItem("auth");
     if (!auth) navigate("/login");
   }, []);
 

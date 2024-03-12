@@ -1,8 +1,9 @@
 import { Grid, GridItem, Box, Text, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
-import no_image from "../../assets/no-image.png"
+import no_image from "../../assets/no-image.png";
 import { baseUrl } from "../../services/api-client";
+import { limitText } from "../../util";
 
 const VipAds = ({ data }) => {
   const [t, i18n] = useTranslation("global");
@@ -31,17 +32,18 @@ const VipAds = ({ data }) => {
                   // h={180}
                   // objectFit='contain'
                   borderBottom="1px solid grey"
-                  >
+                >
                   <Image
-                    w='100%'
+                    w="100%"
                     h={180}
-                    objectFit='cover'
+                    objectFit="cover"
                     borderTopRadius={10}
-                    src={image} alt="ad-pic"
+                    src={image}
+                    alt="ad-pic"
                   />
                 </Box>
                 <Box p={2}>
-                  <Text>{ad.title}</Text>
+                  <Text>{limitText(ad.title, 25)}</Text>
                   <Text fontWeight="bold">
                     {ad.price} {ad.currency}
                   </Text>

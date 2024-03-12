@@ -1,6 +1,5 @@
 import { HStack, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 import TelegramLoginButton from "telegram-login-button";
 import useRequest from "../../hooks/useRequest";
 
@@ -17,7 +16,6 @@ const fake_data = {
 
 const TelegramLogin = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const { post, isLoading, errorMsg } = useRequest({ url: "/token/telegram/" });
 
   const handleTelegramRequest = (user) => {
@@ -26,7 +24,8 @@ const TelegramLogin = () => {
       data: user,
       callback: (data) => {
         console.log("auth data", data);
-        queryClient.setQueryData("auth", data);
+        // queryClient.setQueryData("auth", data);
+        localStorage.setItem("auth", JSON.stringify(data));
         navigate("/");
       },
     });

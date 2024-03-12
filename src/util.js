@@ -38,3 +38,7 @@ export const getErrorMsg = (data, index) => {
   return msg;
 };
 
+export const limitText = (text, limit) => {
+  if (text.length > limit) return text.slice(0, limit) + "...";
+  return text;
+};

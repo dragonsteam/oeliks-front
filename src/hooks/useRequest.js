@@ -7,7 +7,6 @@ import apiClient from "../services/api-client";
 
 const useRequest = ({ url, redirectOn401 = false, appendAuth = false }) => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const [resData, setResData] = useState();
   const [errorMsg, setErrorMsg] = useState("");
@@ -16,7 +15,7 @@ const useRequest = ({ url, redirectOn401 = false, appendAuth = false }) => {
   //
 
   const getAuth = () => {
-    const auth = queryClient.getQueryData("auth");
+    const auth = JSON.parse(localStorage.getItem("auth"));
     if (!appendAuth || !auth) return {};
     return {
       // "Content-Type": "application/json", // this is preventing from posting file
