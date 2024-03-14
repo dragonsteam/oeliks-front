@@ -5,7 +5,7 @@ import logo_night from "../../assets/logo-night.png";
 
 const Logo = () => {
   const navigate = useNavigate();
-  const { toggleColorMode, colorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   return (
     <Box
       cursor="pointer"

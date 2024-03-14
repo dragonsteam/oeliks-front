@@ -1,4 +1,4 @@
-import { Box, HStack, Text, chakra } from "@chakra-ui/react";
+import { Box, HStack, Flex, Text, chakra } from "@chakra-ui/react";
 import { FaGithub, FaTelegram } from "react-icons/fa";
 
 const CFaTelegram = chakra(FaTelegram);
@@ -6,9 +6,14 @@ const CFaTelegram = chakra(FaTelegram);
 const Footer = () => {
   return (
     <Box boxShadow="outline" mt={200}>
-      <HStack px={{ sm: 5, lg: 40 }} py={5} spacing={40}>
+      <Flex
+        px={{ sm: 5, lg: 40 }}
+        py={5}
+        // justifyContent="space-between"
+        flexWrap="wrap"
+      >
         <Text fontWeight="bold">© 2024 Dragons Team - NickPhilomath</Text>
-        <HStack fontSize={30} spacing={7}>
+        <HStack fontSize={30} spacing={7} ml={5}>
           <a href="https://github.com/nickphilomath" target="_blank">
             <FaGithub cursor="pointer" />
           </a>
@@ -16,7 +21,7 @@ const Footer = () => {
             <CFaTelegram cursor="pointer" color="blue.500" />
           </a>
         </HStack>
-      </HStack>
+      </Flex>
     </Box>
   );
 };

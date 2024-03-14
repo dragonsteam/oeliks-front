@@ -47,7 +47,8 @@ const Sections = () => {
         {sections_data.map((section, index) => {
           return (
             <Box
-              minW={110}
+              key={index}
+              // minW={110}
               border="1px solid"
               m={2}
               px={3}

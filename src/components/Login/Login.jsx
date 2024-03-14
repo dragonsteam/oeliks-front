@@ -7,6 +7,7 @@ import {
   Heading,
   Divider,
   Input,
+  InputLeftAddon,
   InputGroup,
   Stack,
   InputLeftElement,
@@ -32,7 +33,7 @@ const CFaLock = chakra(FaLock);
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const { post, isLoading, errorMsg } = useRequest({ url: "/token/telegram" });
+  const { post, isLoading, errorMsg } = useRequest({ url: "/token/" });
   const {
     register,
     handleSubmit,
@@ -81,10 +82,11 @@ const Login = () => {
               <Divider />
               <FormControl>
                 <InputGroup>
-                  <InputLeftElement
+                  {/* <InputLeftElement
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
-                  />
+                  /> */}
+                  <InputLeftAddon>+998</InputLeftAddon>
                   <Input
                     type="text"
                     placeholder="phone"

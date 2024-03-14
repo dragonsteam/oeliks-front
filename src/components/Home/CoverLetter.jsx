@@ -12,8 +12,8 @@ const CoverLetter = () => {
       <br />
       <Text color="yellow.500" as="kbd" fontWeight="bold">
         Warning: The website is currently on development stage and it is using
-        http insecure protocol. DO NOT SUBMIT PERSONAL INFORMATION as they
-        likely might be stolen by hackers
+        http insecure protocol. DO NOT SUBMIT SENSITIVE INFORMATION as they are
+        likely easy to be stolen by hackers
       </Text>
     </Box>
   );

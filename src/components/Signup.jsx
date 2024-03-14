@@ -6,6 +6,7 @@ import {
   Flex,
   Heading,
   Input,
+  InputLeftAddon,
   InputGroup,
   Stack,
   InputLeftElement,
@@ -27,7 +28,7 @@ const CFaLock = chakra(FaLock);
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const { post, isLoading, errorMsg } = useRequest("/register/");
+  const { post, isLoading, errorMsg } = useRequest({ url: "/register/" });
   const {
     register,
     handleSubmit,
@@ -36,10 +37,13 @@ const Login = () => {
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
-  const onSubmit = async (data) => {
-    post(data, (data) => {
+  const onSubmit = (data) => {
+    post({
+      data: data,
+      callback: (data) => {
         console.log("created**");
         navigate("/login");
+      },
     });
   };
 
@@ -63,10 +67,11 @@ const Login = () => {
             <Stack spacing={4} p="1rem" boxShadow="lg">
               <FormControl>
                 <InputGroup>
-                  <InputLeftElement
+                  {/* <InputLeftElement
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
-                  />
+                  /> */}
+                  <InputLeftAddon>+998</InputLeftAddon>
                   <Input
                     type="text"
                     placeholder="phone"
@@ -119,7 +124,12 @@ const Login = () => {
       </Stack>
       <Box>
         Already have one?{" "}
-        <Link color="blue.500" onClick={()=>{navigate('/login')}}>
+        <Link
+          color="blue.500"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
           Log In
         </Link>
       </Box>
