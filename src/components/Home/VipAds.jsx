@@ -17,8 +17,8 @@ const VipAds = ({ data }) => {
           md: "repeat(2, 1fr)",
           lg: "repeat(4, 1fr)",
         }}
-        gap={2}
-        mt={5}
+        mt={15}
+        gap={4}
       >
         {data &&
           data.map((ad, index) => {
@@ -29,21 +29,16 @@ const VipAds = ({ data }) => {
             return (
               <GridItem
                 key={index}
-                w="100%"
-                boxShadow="md"
-                borderBottomRadius={10}
+                mt={5}
+                cursor="pointer"
+                // w="100%"
               >
-                <Box
-                  w="100"
-                  // h={180}
-                  // objectFit='contain'
-                  borderBottom="1px solid grey"
-                >
+                <Box boxShadow="md" borderRadius={10}>
                   <Image
+                    aspectRatio={16 / 9}
                     w="100%"
-                    h={180}
+                    borderRadius={10}
                     objectFit="cover"
-                    borderTopRadius={10}
                     src={image}
                     alt="ad-pic"
                   />
