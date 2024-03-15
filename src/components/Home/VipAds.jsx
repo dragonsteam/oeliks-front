@@ -1,10 +1,12 @@
 import { Grid, GridItem, Box, Text, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import no_image from "../../assets/no-image.png";
 import { baseUrl } from "../../services/api-client";
 
 const VipAds = ({ data }) => {
+  const navigate = useNavigate();
   const [t, i18n] = useTranslation("global");
   return (
     <Box mt={10}>
@@ -31,7 +33,9 @@ const VipAds = ({ data }) => {
                 key={index}
                 mt={5}
                 cursor="pointer"
-                // w="100%"
+                onClick={() => {
+                  navigate("/post/" + ad.id);
+                }}
               >
                 <Box boxShadow="md" borderRadius={10}>
                   <Image
