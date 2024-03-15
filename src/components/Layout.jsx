@@ -11,7 +11,12 @@ const Layout = () => {
       <GridItem boxShadow="md" margin={5} borderRadius={15}>
         <Navbar />
       </GridItem>
-      <GridItem margin="auto" mt={50} width={{ base: "92%", lg: "60%" }}>
+      <GridItem
+        margin="auto"
+        mt={50}
+        px={4}
+        width={{ base: "100%", lg: "70%" }}
+      >
         <Outlet />
       </GridItem>
       <GridItem margin="auto" mt={50} width="100%">
