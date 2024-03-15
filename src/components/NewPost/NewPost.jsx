@@ -19,12 +19,13 @@ import { getErrorMsg } from "../../util";
 import SpinnerButton from "../common/SpinnerButton";
 import FormInput from "../common/FormInput";
 import FormSelect from "../common/FormSelect";
+import FormTextarea from "../common/FormTextarea";
 import Pictures from "./Pictures";
 
 export const schema = z.object({
   // truck: z.number({ invalid_type_error: "Truck is required" }).positive(),
   title: z.string().min(16).max(70),
-  about: z.string(),
+  description: z.string(),
   // exchange_method: z.string(),
   price: z.string(),
   currency: z.string(),
@@ -105,14 +106,13 @@ const NewPost = () => {
             resErrMsg={getErrorMsg(resErrors, "title")}
           />
           <Pictures pictures={pictures} onNewPicture={onNewPicture} />
-          <FormInput
-            label={t("newpost.form.about")}
-            type="text"
+          <FormTextarea
+            label={"Description*"}
             placeholder={t("newpost.form.about_ph")}
-            id="about"
-            conf={register("about")}
+            id="description"
+            conf={register("description")}
             errMsg={errors.about?.message}
-            resErrMsg={getErrorMsg(resErrors, "about")}
+            resErrMsg={getErrorMsg(resErrors, "description")}
           />
           <FormInput
             label={t("newpost.form.price")}

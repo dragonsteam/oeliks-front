@@ -16,10 +16,11 @@ const useRequest = ({ url, redirectOn401 = false, appendAuth = false }) => {
 
   const getAuth = () => {
     const auth = JSON.parse(localStorage.getItem("auth"));
+    console.log("^^^^^^", auth);
     if (!appendAuth || !auth) return {};
     return {
       // "Content-Type": "application/json", // this is preventing from posting file
-      Authorization: "JWT " + auth.access,
+      Authorization: "JWT " + auth.accessToken,
     };
   };
 

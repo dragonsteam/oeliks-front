@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Box, Button, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Button, Grid, GridItem, Heading } from "@chakra-ui/react";
 
 import useEntities from "../../hooks/useEntities";
 import Pictures from "./Pictures";
@@ -22,6 +22,7 @@ const Post = () => {
   return (
     <Box>
       <Button
+        mb={5}
         colorScheme="blue"
         onClick={() => {
           navigate("/");
@@ -40,25 +41,27 @@ const Post = () => {
             vendor
             address
       */}
-      <Grid
-        templateAreas={{
-          base: `"main" "side"`,
-          lg: `"main side"`,
-        }}
-        // gridTemplateRows={"50px 1fr 30px"}
-        gridTemplateColumns={{ base: "1fr", lg: "0.7fr 0.3fr" }}
-        gap="1"
-        color="blackAlpha.700"
-        fontWeight="bold"
-      >
-        <GridItem bg="orange.300" area={"main"}>
-          <Pictures data={ad ? ad.pictures : []} />
-          main
-        </GridItem>
-        <GridItem pl="2" bg="pink.300" area={"side"}>
-          Side
-        </GridItem>
-      </Grid>
+      {!isLoading && (
+        <Grid
+          templateAreas={{
+            base: `"main" "side"`,
+            lg: `"main side"`,
+          }}
+          // gridTemplateRows={"50px 1fr 30px"}
+          gridTemplateColumns={{ base: "1fr", lg: "0.7fr 0.3fr" }}
+          gap={3}
+          fontWeight="bold"
+        >
+          <GridItem area={"main"}>
+            {ad.pictures.length ? <Pictures data={ad.pictures} /> : <></>}
+            <Heading fontSize={30}>Description</Heading>
+            <Box>{ad.description}</Box>
+          </GridItem>
+          <GridItem pl="2" bg="orange.300" area={"side"}>
+            Side
+          </GridItem>
+        </Grid>
+      )}
     </Box>
   );
 };
