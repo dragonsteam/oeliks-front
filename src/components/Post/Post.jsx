@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Box, Button, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Text, Box, Button, Grid, GridItem, Heading } from "@chakra-ui/react";
 
 import useEntities from "../../hooks/useEntities";
 import Pictures from "./Pictures";
@@ -54,11 +54,24 @@ const Post = () => {
         >
           <GridItem area={"main"}>
             {ad.pictures.length ? <Pictures data={ad.pictures} /> : <></>}
-            <Heading fontSize={30}>Description</Heading>
+            <Heading fontSize={25} mt={5}>
+              {ad.title}
+            </Heading>
+            <Text fontSize={20} mt={3}>
+              {ad.price} {ad.currency}
+            </Text>
+            <Heading fontSize={22} mt={10}>
+              Description
+            </Heading>
             <Box>{ad.description}</Box>
           </GridItem>
-          <GridItem pl="2" bg="orange.300" area={"side"}>
-            Side
+          <GridItem bg="orange.300" area={"side"}>
+            <Box bg="green.300" mt={5}>
+              <Box bg="blue.300" w="70px" h="70px" borderRadius={50}></Box>
+            </Box>
+            <Box bg="red.300" mt={10}>
+              <Box bg="blue.300" w="100px" h="100px"></Box>
+            </Box>
           </GridItem>
         </Grid>
       )}

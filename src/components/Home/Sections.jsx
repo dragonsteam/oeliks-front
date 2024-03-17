@@ -4,35 +4,27 @@ import { Flex, GridItem, Box, Text, Heading } from "@chakra-ui/react";
 const sections_data = [
   {
     name: "children",
-    image_url: null,
   },
   {
     name: "property",
-    image_url: null,
   },
   {
     name: "vehicles",
-    image_url: null,
   },
   {
     name: "jobs",
-    image_url: null,
   },
   {
     name: "pets",
-    image_url: null,
   },
   {
     name: "home",
-    image_url: null,
   },
   {
     name: "gadges",
-    image_url: null,
   },
   {
     name: "business",
-    image_url: null,
   },
 ];
 
