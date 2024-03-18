@@ -1,7 +1,6 @@
 import { CanceledError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 
 import apiClient from "../services/api-client";
 
@@ -15,9 +14,10 @@ const useRequest = ({ url, redirectOn401 = false, appendAuth = false }) => {
   //
 
   const getAuth = () => {
-    const auth = JSON.parse(localStorage.getItem("auth"));
+    const authdata = localStorage.getItem("auth");
+    if (!appendAuth || !authdata) return {};
+    const auth = JSON.parse(authdata);
     console.log("^^^^^^", auth);
-    if (!appendAuth || !auth) return {};
     return {
       // "Content-Type": "application/json", // this is preventing from posting file
       Authorization: "JWT " + auth.accessToken,

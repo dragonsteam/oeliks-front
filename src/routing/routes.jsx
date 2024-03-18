@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import Home from "../components/Home/Home";
 import Profile from "../components/Profile/Profile";
 import Post from "../components/Post/Post";
+import Posts from "../components/Posts/Posts";
 import NewPost from "../components/NewPost/NewPost";
 import Login from "../components/Login/Login";
 import Logout from "../components/Logout";
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "", element: <Home /> },
       { path: "profile", element: <Profile /> },
       { path: "post/:id", element: <Post /> },
+      { path: "posts/", element: <Posts /> },
       { path: "new-post", element: <NewPost /> },
       //     // { path: "map", element: <Map /> },
       //     // { path: "logs", element: <DriverLogs /> },

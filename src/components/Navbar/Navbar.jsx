@@ -1,46 +1,45 @@
-import { useNavigate } from "react-router-dom";
-import { Box, Button, HStack, Text } from "@chakra-ui/react";
-import { useTranslation } from "react-i18next";
-import { LuUser } from "react-icons/lu";
-import Logo from "./Logo";
-import ColorModeSwitch from "./ColorModeSwitch";
-import LanguageSwitch from "./LanguageSwitch";
+import { Link } from "react-router-dom";
+import { Box, HStack, Heading, List, ListItem, Text } from "@chakra-ui/react";
+import {
+  TbHome,
+  TbStack2,
+  TbUser,
+  TbLogout,
+  TbSettings,
+  TbBox,
+  TbMessage,
+  TbPlus,
+} from "react-icons/tb";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const [t, i18n] = useTranslation("global");
+  const data = [
+    { name: "Home", link: "/", icon: <TbHome size="23px" /> },
+    { name: "My Posts", link: "/posts", icon: <TbStack2 size="23px" /> },
+    { name: "New Post", link: "/new-post", icon: <TbPlus size="23px" /> },
+    { name: "Profile", link: "/profile", icon: <TbUser size="23px" /> },
+    { name: "Messages", link: "/messages", icon: <TbMessage size="23px" /> },
+    { name: "Saved Posts", link: "/saved", icon: <TbBox size="23px" /> },
+    { name: "Settings", link: "/settings", icon: <TbSettings size="23px" /> },
+    { name: "Log out", link: "/logout", icon: <TbLogout size="23px" /> },
+  ];
 
   return (
-    <HStack justifyContent="space-between" padding={5}>
-      <Logo />
-      <HStack spacing={5}>
-        <LanguageSwitch />
-        <HStack
-          border="1px solid"
-          px={3}
-          py={1}
-          borderRadius={5}
-          cursor="pointer"
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          <LuUser size="22px" />
-          <Text fontSize="md" fontWeight="bold">
-            {t("navbar.profile")}
-          </Text>
-        </HStack>
-        <Button
-          colorScheme="blue"
-          onClick={() => {
-            navigate("/new-post");
-          }}
-        >
-          {t("navbar.new_post")}
-        </Button>
-        <ColorModeSwitch />
-      </HStack>
-    </HStack>
+    <Box h="100%" pt="30px">
+      <List spacing={2}>
+        {data.map((item, index) => {
+          return (
+            <ListItem key={index} fontSize={15} padding={2}>
+              <Link to={item.link}>
+                <HStack>
+                  {item.icon}
+                  <Text fontWeight="bold">{item.name}</Text>
+                </HStack>
+              </Link>
+            </ListItem>
+          );
+        })}
+      </List>
+    </Box>
   );
 };
 

@@ -151,6 +151,17 @@ const Login = () => {
           Sign Up
         </Link>
       </Box>
+      <Box>
+        Just a Guest user?{" "}
+        <Link
+          color="blue.500"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Welcome!
+        </Link>
+      </Box>
     </Flex>
   );
 };

@@ -47,7 +47,16 @@ const Pictures = ({ pictures = [], onNewPicture }) => {
           handlePicChose(e);
         }}
       />
-      <Grid templateColumns="repeat(4, 1fr)" gap={2} mt={2}>
+      <Grid
+        // templateColumns="repeat(4, 1fr)"
+        templateColumns={{
+          sm: "repeat(1, 1fr)",
+          md: "repeat(2, 1fr)",
+          lg: "repeat(4, 1fr)",
+        }}
+        gap={2}
+        mt={2}
+      >
         {pictures.map((pic, index) => {
           if (!pic.url)
             return (
@@ -59,8 +68,11 @@ const Pictures = ({ pictures = [], onNewPicture }) => {
                 justifyContent="center"
               >
                 <Image
+                  w="100%"
+                  aspectRatio={16 / 9}
                   src={baseUrl + pic.image}
-                  h={150}
+                  objectFit="cover"
+                  // h={150}
                   borderRadius={4}
                   alt="ad-pic"
                 />
@@ -69,7 +81,8 @@ const Pictures = ({ pictures = [], onNewPicture }) => {
         })}
         <GridItem
           w="100%"
-          h={150}
+          // h={150}
+          aspectRatio={16 / 9}
           borderRadius={4}
           border="1px solid grey"
           boxShadow="md"

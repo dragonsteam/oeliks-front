@@ -21,15 +21,6 @@ const Post = () => {
 
   return (
     <Box>
-      <Button
-        mb={5}
-        colorScheme="blue"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        {"<<"} Back
-      </Button>
       {/* 
         main
             pictures
