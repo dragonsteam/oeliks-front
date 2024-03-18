@@ -5,6 +5,7 @@ import Profile from "../components/Profile/Profile";
 import Post from "../components/Post/Post";
 import Posts from "../components/Posts/Posts";
 import NewPost from "../components/NewPost/NewPost";
+import Vendor from "../components/Vendor/Vendor";
 import Login from "../components/Login/Login";
 import Logout from "../components/Logout";
 import Signup from "../components/Signup";
@@ -21,8 +22,9 @@ const router = createBrowserRouter([
       { path: "", element: <Home /> },
       { path: "profile", element: <Profile /> },
       { path: "post/:id", element: <Post /> },
-      { path: "posts/", element: <Posts /> },
+      { path: "posts", element: <Posts /> },
       { path: "new-post", element: <NewPost /> },
+      { path: "vendor/:id", element: <Vendor /> },
       //     // { path: "map", element: <Map /> },
       //     // { path: "logs", element: <DriverLogs /> },
       //     // { path: "logs/driver/:id", element: <DriverLog /> },

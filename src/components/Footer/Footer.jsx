@@ -5,15 +5,15 @@ const CFaTelegram = chakra(FaTelegram);
 
 const Footer = () => {
   return (
-    <Box boxShadow="outline" mt={200}>
+    <Box borderTop="1px solid grey" mt="200px">
       <Flex
         px={{ sm: 5, lg: 40 }}
         py={5}
         // justifyContent="space-between"
         flexWrap="wrap"
       >
-        <Text fontWeight="bold">© 2024 Dragons Team - NickPhilomath</Text>
-        <HStack fontSize={30} spacing={7} ml={5}>
+        <Text fontWeight="bold">© 2024 NickPhilomath</Text>
+        <HStack fontSize={30} spacing={7} ml="50px">
           <a href="https://github.com/nickphilomath" target="_blank">
             <FaGithub cursor="pointer" />
           </a>

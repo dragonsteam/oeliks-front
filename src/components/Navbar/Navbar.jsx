@@ -24,7 +24,7 @@ const Navbar = () => {
   ];
 
   return (
-    <Box h="100%" pt="30px">
+    <Box h="100%" pt="30px" pl="16px">
       <List spacing={2}>
         {data.map((item, index) => {
           return (
