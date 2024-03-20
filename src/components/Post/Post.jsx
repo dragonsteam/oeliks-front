@@ -43,7 +43,7 @@ const Post = () => {
             vendor
             address
       */}
-      {!isLoading && (
+      {!isLoading && ad && (
         <Grid
           templateAreas={{
             base: `"main" "side"`,

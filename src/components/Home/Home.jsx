@@ -13,8 +13,8 @@ const Home = () => {
     isLoading,
     refetch,
   } = useEntities({
-    keys: ["vip-ads"],
-    url: "/advertisements/vip",
+    keys: ["ads"],
+    url: "/advertisements",
     staleTime: 3 * 60 * 1000,
     redirectOn401: true,
     // appendAuth: true, // this is for everyone
@@ -25,7 +25,7 @@ const Home = () => {
       <CoverLetter />
       <SearchBar />
       <Sections />
-      <VipAds data={advertisements} />
+      <VipAds data={isLoading ? { results: [] } : advertisements} />
     </Box>
   );
 };

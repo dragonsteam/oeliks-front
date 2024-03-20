@@ -70,7 +70,7 @@ const Pictures = ({ pictures = [], onNewPicture }) => {
                 <Image
                   w="100%"
                   aspectRatio={16 / 9}
-                  src={baseUrl + pic.image}
+                  src={pic.image}
                   objectFit="cover"
                   // h={150}
                   borderRadius={4}

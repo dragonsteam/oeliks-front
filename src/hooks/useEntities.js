@@ -27,8 +27,8 @@ const useEntities = ({
 
   const fetchEntities = () =>
     apiClient.get(url, { ...getAuth() }).then((res) => {
-      console.log("data**", res.data.data);
-      return res.data.data;
+      console.log("response data**", res.data);
+      return res.data;
     });
 
   const query = useQuery({
