@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 
 import useEntities from "../../hooks/useEntities";
 import CoverLetter from "./CoverLetter";
@@ -11,13 +11,13 @@ const Home = () => {
     data: advertisements,
     error,
     isLoading,
-    refetch,
+    fetchNextPage,
   } = useEntities({
     keys: ["ads"],
     url: "/advertisements",
     staleTime: 3 * 60 * 1000,
     redirectOn401: true,
-    // appendAuth: true, // this is for everyone
+    infiniteQuery: true,
   });
 
   return (
@@ -25,7 +25,14 @@ const Home = () => {
       <CoverLetter />
       <SearchBar />
       <Sections />
-      <VipAds data={isLoading ? { results: [] } : advertisements} />
+      <VipAds data={isLoading ? [] : advertisements.pages} />
+      <Button
+        onClick={() => {
+          fetchNextPage();
+        }}
+      >
+        Load more
+      </Button>
     </Box>
   );
 };

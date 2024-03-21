@@ -1,3 +1,4 @@
+import { useState, Fragment } from "react";
 import { Grid, GridItem, Box, Text, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -23,43 +24,49 @@ const VipAds = ({ data }) => {
         mt={15}
         gap={4}
       >
-        {data.results.map((ad, index) => {
-          const image =
-            ad.pictures.length !== 0
-              ? baseUrl + ad.pictures[0].image
-              : no_image;
+        {data.map((page, index) => {
           return (
-            <GridItem
-              key={index}
-              mt={5}
-              cursor="pointer"
-              onClick={() => {
-                navigate("/post/" + ad.id);
-              }}
-            >
-              <Box boxShadow="md" borderRadius={10}>
-                <Image
-                  aspectRatio={16 / 9}
-                  w="100%"
-                  borderRadius={10}
-                  objectFit="cover"
-                  src={image}
-                  alt="ad-pic"
-                />
-              </Box>
-              <Box p={2}>
-                <Text noOfLines={[1, 2]} maxWidth={250}>
-                  {ad.title}
-                </Text>
-                <Text fontWeight="bold">
-                  {ad.price} {ad.currency}
-                </Text>
-                <Text fontSize="sm">address, home, city</Text>
-                <Text fontSize="sm">
-                  <TimeAgo date={ad.date_posted} />
-                </Text>
-              </Box>
-            </GridItem>
+            <Fragment key={index}>
+              {page.results.map((ad, index) => {
+                const image =
+                  ad.pictures.length !== 0
+                    ? baseUrl + ad.pictures[0].image
+                    : no_image;
+                return (
+                  <GridItem
+                    key={ad.id}
+                    mt={5}
+                    cursor="pointer"
+                    onClick={() => {
+                      navigate("/post/" + ad.id);
+                    }}
+                  >
+                    <Box boxShadow="md" borderRadius={10}>
+                      <Image
+                        aspectRatio={16 / 9}
+                        w="100%"
+                        borderRadius={10}
+                        objectFit="cover"
+                        src={image}
+                        alt="ad-pic"
+                      />
+                    </Box>
+                    <Box p={2}>
+                      <Text noOfLines={[1, 2]} maxWidth={250}>
+                        {ad.title}
+                      </Text>
+                      <Text fontWeight="bold">
+                        {ad.price} {ad.currency}
+                      </Text>
+                      <Text fontSize="sm">address, home, city</Text>
+                      <Text fontSize="sm">
+                        <TimeAgo date={ad.date_posted} />
+                      </Text>
+                    </Box>
+                  </GridItem>
+                );
+              })}
+            </Fragment>
           );
         })}
       </Grid>

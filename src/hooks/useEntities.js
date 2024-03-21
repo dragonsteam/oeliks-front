@@ -1,7 +1,10 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useQuery,
+  useInfiniteQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { getHeaders } from "./useData";
 import apiClient from "../services/api-client";
 
 const useEntities = ({
@@ -10,6 +13,7 @@ const useEntities = ({
   staleTime,
   redirectOn401 = false,
   appendAuth = false,
+  infiniteQuery = false,
 }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -25,18 +29,31 @@ const useEntities = ({
     };
   };
 
-  const fetchEntities = () =>
-    apiClient.get(url, { ...getAuth() }).then((res) => {
-      console.log("response data**", res.data);
-      return res.data;
-    });
+  const fetchEntities = ({ pageParam = 1 }) =>
+    apiClient
+      .get(url, {
+        ...getAuth(),
+        params: infiniteQuery ? { page: pageParam } : {},
+      })
+      .then((res) => {
+        console.log("response data**", res.data);
+        return res.data;
+      });
 
-  const query = useQuery({
-    // queryKey: ["drivers"],
-    queryKey: keys,
-    queryFn: fetchEntities,
-    staleTime: staleTime,
-  });
+  const query = infiniteQuery
+    ? useInfiniteQuery({
+        queryKey: keys,
+        queryFn: fetchEntities,
+        staleTime: staleTime,
+        getNextPageParam: (lastPage, allPages) => {
+          return lastPage.next ? allPages.length + 1 : undefined;
+        },
+      })
+    : useQuery({
+        queryKey: keys,
+        queryFn: fetchEntities,
+        staleTime: staleTime,
+      });
 
   useEffect(() => {
     if (redirectOn401 && query.error?.response?.status === 401) {
