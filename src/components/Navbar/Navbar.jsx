@@ -11,7 +11,7 @@ import {
   TbPlus,
 } from "react-icons/tb";
 
-const Navbar = () => {
+const Navbar = ({ handleCloseMenu = () => {} }) => {
   const data = [
     { name: "Home", link: "/", icon: <TbHome size="23px" /> },
     { name: "My Posts", link: "/posts", icon: <TbStack2 size="23px" /> },
@@ -28,7 +28,12 @@ const Navbar = () => {
       <List spacing={2}>
         {data.map((item, index) => {
           return (
-            <ListItem key={index} fontSize={15} padding={2}>
+            <ListItem
+              key={index}
+              fontSize={15}
+              padding={2}
+              onClick={() => handleCloseMenu()}
+            >
               <Link to={item.link}>
                 <HStack>
                   {item.icon}

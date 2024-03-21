@@ -46,13 +46,13 @@ const Layout = () => {
           <Box
             position="fixed"
             top="60px"
-            left={0}
+            left="0px"
             w="230px"
             h="100%"
             bg="white"
             boxShadow="md"
           >
-            <Navbar />
+            <Navbar handleCloseMenu={() => setMenuOpen(false)} />
           </Box>
         )}
       </GridItem>
