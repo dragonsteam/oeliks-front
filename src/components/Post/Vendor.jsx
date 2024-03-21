@@ -34,7 +34,7 @@ const Vendor = () => {
   const getButtons = () => {
     return (
       <HStack spacing={3}>
-        <ButtonGroup isAttached variant="outline">
+        <ButtonGroup isAttached variant="outline" size="sm">
           <Button
             leftIcon={
               likeStatus === "like" ? (
@@ -48,6 +48,7 @@ const Vendor = () => {
             2.7k
           </Button>
           <Button
+            size="sm"
             leftIcon={
               likeStatus === "dislike" ? (
                 <AiFillDislike size="20px" />
@@ -60,10 +61,10 @@ const Vendor = () => {
             13
           </Button>
         </ButtonGroup>
-        <Button variant="outline" leftIcon={<HiOutlineShare />}>
+        <Button variant="outline" size="sm" leftIcon={<HiOutlineShare />}>
           Share
         </Button>
-        <Button variant="outline" leftIcon={<HiOutlineFlag />}>
+        <Button variant="outline" size="sm" leftIcon={<HiOutlineFlag />}>
           Report
         </Button>
       </HStack>

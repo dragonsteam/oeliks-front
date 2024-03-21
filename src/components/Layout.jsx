@@ -33,6 +33,7 @@ const Layout = () => {
         <Navbar />
       </GridItem>
       <GridItem
+        id="main-div"
         area={"main"}
         // margin="auto"
         px={4}

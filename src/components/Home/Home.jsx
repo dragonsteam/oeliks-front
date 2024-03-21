@@ -1,4 +1,5 @@
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Text, Spinner } from "@chakra-ui/react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import useEntities from "../../hooks/useEntities";
 import CoverLetter from "./CoverLetter";
@@ -12,6 +13,7 @@ const Home = () => {
     error,
     isLoading,
     fetchNextPage,
+    hasNextPage,
   } = useEntities({
     keys: ["ads"],
     url: "/advertisements",
@@ -20,19 +22,42 @@ const Home = () => {
     infiniteQuery: true,
   });
 
+  const fetchetDataCount = advertisements
+    ? advertisements.pages.reduce((total, page) => {
+        return total + page.results.length;
+      }, 0)
+    : 0;
+
   return (
     <Box>
       <CoverLetter />
       <SearchBar />
       <Sections />
-      <VipAds data={isLoading ? [] : advertisements.pages} />
-      <Button
-        onClick={() => {
+      <InfiniteScroll
+        scrollableTarget="main-div"
+        dataLength={fetchetDataCount}
+        hasMore={hasNextPage}
+        next={() => {
           fetchNextPage();
         }}
+        loader={
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        }
+        endMessage={
+          <Text textAlign="center" mb="40px">
+            <b>Yay! You have seen it all</b>
+          </Text>
+        }
+        style={{ overflow: "unset" }}
       >
-        Load more
-      </Button>
+        <VipAds data={isLoading ? [] : advertisements.pages} />
+      </InfiniteScroll>
     </Box>
   );
 };
