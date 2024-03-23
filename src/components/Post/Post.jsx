@@ -9,7 +9,6 @@ import {
   Heading,
   HStack,
 } from "@chakra-ui/react";
-import { RiUser3Line } from "react-icons/ri";
 
 import useEntities from "../../hooks/useEntities";
 import Pictures from "./Pictures";
@@ -67,10 +66,7 @@ const Post = () => {
               Description
             </Heading>
             <Box>{ad.description}</Box>
-            <Vendor />
-            {/* <Box bg="red.300" mt={10}>
-              <Box bg="blue.300" w="100px" h="100px"></Box>
-            </Box> */}
+            <Vendor vendor={{ id: ad.user }} />
           </GridItem>
           <GridItem area="side"></GridItem>
         </Grid>

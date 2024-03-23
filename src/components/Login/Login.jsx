@@ -78,7 +78,7 @@ const Login = () => {
         <Box minW={{ base: "90%", md: "468px" }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={4} p="1rem" boxShadow="lg">
-              <TelegramLogin />
+              {/* <TelegramLogin /> */}
               <Divider />
               <FormControl>
                 <InputGroup>

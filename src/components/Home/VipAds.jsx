@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import TimeAgo from "react-timeago";
 
+import AdCard from "../common/AdCard";
 import no_image from "../../assets/no-image.png";
 import { baseUrl } from "../../services/api-client";
 
@@ -28,10 +29,11 @@ const VipAds = ({ data }) => {
           return (
             <Fragment key={index}>
               {page.results.map((ad, index) => {
-                const image =
+                ad.image =
                   ad.pictures.length !== 0
                     ? baseUrl + ad.pictures[0].image
                     : no_image;
+
                 return (
                   <GridItem
                     key={ad.id}
@@ -41,28 +43,7 @@ const VipAds = ({ data }) => {
                       navigate("/post/" + ad.id);
                     }}
                   >
-                    <Box boxShadow="md" borderRadius={10}>
-                      <Image
-                        aspectRatio={16 / 9}
-                        w="100%"
-                        borderRadius={10}
-                        objectFit="cover"
-                        src={image}
-                        alt="ad-pic"
-                      />
-                    </Box>
-                    <Box p={2}>
-                      <Text noOfLines={[1, 2]} maxWidth={250}>
-                        {ad.title}
-                      </Text>
-                      <Text fontWeight="bold">
-                        {ad.price} {ad.currency}
-                      </Text>
-                      <Text fontSize="sm">address, home, city</Text>
-                      <Text fontSize="sm">
-                        <TimeAgo date={ad.date_posted} />
-                      </Text>
-                    </Box>
+                    <AdCard ad={ad} />
                   </GridItem>
                 );
               })}

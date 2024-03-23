@@ -51,13 +51,20 @@ const Home = () => {
         }
         endMessage={
           <Text textAlign="center" mb="40px">
-            <b>Yay! You have seen it all</b>
+            <b>You have reached the bottom</b>
           </Text>
         }
         style={{ overflow: "unset" }}
       >
-        <VipAds data={isLoading ? [] : advertisements.pages} />
+        <VipAds
+          data={isLoading || !advertisements ? [] : advertisements.pages}
+        />
       </InfiniteScroll>
+      {error && (
+        <Text color="tomato" fontWeight="bold" mb={20} align="center">
+          {error.message}
+        </Text>
+      )}
     </Box>
   );
 };

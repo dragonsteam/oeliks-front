@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   useBreakpointValue,
   Box,
@@ -18,8 +19,11 @@ import {
   AiFillDislike,
 } from "react-icons/ai";
 import { HiOutlineShare, HiOutlineFlag } from "react-icons/hi";
+import UserCircle from "../common/UserCircle";
 
-const Vendor = () => {
+const Vendor = ({ vendor }) => {
+  const navigate = useNavigate();
+
   const isSmallDevice = useBreakpointValue({ base: true, sm: true, lg: false });
   const [isSubscribed, setSubscribed] = useState(false);
   const [likeStatus, setLikeStatus] = useState(undefined);
@@ -75,22 +79,22 @@ const Vendor = () => {
     <Box mt="30px">
       <HStack justifyContent="space-between">
         <HStack>
-          <Box
-            // bg="blue.300"
-            // color="blackAlpha.700"
+          <UserCircle
             w="80px"
             h="80px"
-            borderRadius={50}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            border="1px solid grey"
-            cursor="pointer"
-          >
-            <RiUser3Line size="40px" />
-          </Box>
+            onClick={() => {
+              navigate("/vendor/" + vendor.id);
+            }}
+          />
           <VStack mr="40px">
-            <Text fontSize={24} fontWeight="bold" cursor="pointer">
+            <Text
+              fontSize={24}
+              fontWeight="bold"
+              cursor="pointer"
+              onClick={() => {
+                navigate("/vendor/" + vendor.id);
+              }}
+            >
               John Doe
             </Text>
             <Text fontWeight="600">34k subscribers</Text>

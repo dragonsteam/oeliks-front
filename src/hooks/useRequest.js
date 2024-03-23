@@ -17,7 +17,6 @@ const useRequest = ({ url, redirectOn401 = false, appendAuth = false }) => {
     const authdata = localStorage.getItem("auth");
     if (!appendAuth || !authdata) return {};
     const auth = JSON.parse(authdata);
-    console.log("^^^^^^", auth);
     return {
       // "Content-Type": "application/json", // this is preventing from posting file
       Authorization: "JWT " + auth.accessToken,
